@@ -1,0 +1,30 @@
+<.header>
+  Listing Expenses
+  <:actions>
+    <.link patch={~p"/expenses/new"}>
+      <.button>New Expense</.button>
+    </.link>
+  </:actions>
+</.header>
+<br>
+
+<%!-- TODO: Use .table --%>
+<%= Enum.map(@expenses, fn expense ->  %>
+    <p style = {"background-color: gray; color: white;"}>
+        Date : <%= expense.date %><br>
+        Descr : <%= expense.description %><br>
+        Cost : <%= expense.cost %><br>
+    </p>
+    <br>
+<% end) %>
+
+<%= if @live_action == :new do %>
+    <.modal id="expense-modal" show={true} on_cancel={JS.patch(~p"/expenses")}>
+        <.live_component 
+            module ={TrackerWeb.ExpenseLive.ExpenseFormComponent}
+            id="expense-form-component"
+            title={@page_title}
+            patch={~p"/expenses"}
+        />
+    </.modal>
+<% end %>

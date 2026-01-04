@@ -21,6 +21,9 @@ defmodule TrackerWeb.Router do
 
     live "/debts", DebtLive.Index, :index
     live "/debts/new", DebtLive.Index, :new
+
+    live "/expenses", ExpenseLive.Index, :index
+    live "/expenses/new", ExpenseLive.Index, :new
   end
 
   # Other scopes may use custom stacks.
