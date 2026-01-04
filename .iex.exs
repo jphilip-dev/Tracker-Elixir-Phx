@@ -1,8 +1,7 @@
 
 
-
 # Contexts
-alias Tracker.Debts
+alias Tracker.{Debts, Expenses}
 
 # Schemas
 alias Tracker.Debts.Debt
