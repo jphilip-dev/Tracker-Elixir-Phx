@@ -18,6 +18,9 @@ defmodule TrackerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/debts", DebtLive.Index, :index
+    live "/debts/new", DebtLive.Index, :new
   end
 
   # Other scopes may use custom stacks.

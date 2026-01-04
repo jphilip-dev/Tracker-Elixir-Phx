@@ -1,0 +1,30 @@
+<.header>
+  Listing Debts
+  <:actions>
+    <.link patch={~p"/debts/new"}>
+      <.button>New Debt</.button>
+    </.link>
+  </:actions>
+</.header>
+<br>
+
+<%!-- TODO: Use .table --%>
+<%= Enum.map(@debts, fn debt ->  %>
+    <p style = {"background-color: gray; color: white;"}>
+        Date: <%= debt.date %><br>
+        Lender : <%= debt.lender %><br>
+        Amount Owed: <%= debt.amount_owed %><br>
+    </p>
+    <br>
+<% end) %>
+
+<%= if @live_action == :new do %>
+    <.modal id="debt-modal" show={true} on_cancel={JS.patch(~p"/debts")}>
+        <.live_component 
+            module ={TrackerWeb.DebtLive.DebtFormComponent}
+            id="debt-form-component"
+            title={@page_title}
+            patch={~p"/debts"}
+        />
+    </.modal>
+<% end %>
